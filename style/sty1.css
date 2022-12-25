@@ -82,3 +82,43 @@ header ul li a{
     text-align:center;
     
 }
+.hero{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-around;
+    align-items: center;
+    background-color:var(--zgray);
+    padding-top:6vh;
+    padding-inline: 20vh;
+    padding-bottom:5vh;
+}
+.herobtn{
+    background-color:var(--zorange);
+    font-size :1rem;
+    border:none;
+    padding:10px 20px;
+    border-radius:10px;
+    transition:0.2s ease-in;
+    color:white;
+}
+.herobtn:hover{
+    background-color:#e2505c;
+}
+.about{
+    display:flex;
+    justify-content: space-around;
+    margin-top:3vh;
+    flex-wrap:wrap;
+}
+.aboutone{
+    text-align:center;
+    color:var(--zblue);
+    padding:40px 20px;
+    border-radius:15px;
+    margin-bottom:20px;
+
+}
+.abouticons{
+    width:6em;
+    height:auto;
+}
