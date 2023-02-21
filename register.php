@@ -1,3 +1,13 @@
+<?php 
+  session_start();
+  $text = "Login";
+  $redirect = "./login.php";
+  $dashboardicon = "";
+  if(isset($_SESSION['username'])){
+    $text = "Logout";
+    $redirect = "./logout.php";
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,23 +29,24 @@
         <h2 style="margin:auto 0"> <a href="index.html" style="text-decoration:none;color:white" > Day<span style="color:var(--zorange)">Track</span> </a></h2> 
         
         <ul>
-            <li><a href="index.html" class="header-links"><span style="padding-right:5px" class="material-symbols-outlined">
+            <li><a href="index.php" class="header-links"><span style="padding-right:5px" class="material-symbols-outlined">
                 home
                 </span> Home</a> </li>
-            <li><a href="" class="header-links"><span class="material-symbols-outlined" style="padding-right:5px">
+            <li><a href="./dashboard/dashboard.php" class="header-links"><span class="material-symbols-outlined" style="padding-right:5px">
                 dashboard
                 </span>Dashboard</a> </li>
-            <li><a href="" class="header-links"><span class="material-symbols-outlined" style="padding-right:5px">
+            <li><a href="#" class="header-links"><span class="material-symbols-outlined" style="padding-right:5px">
                 task
-                </span>Tasks</a> </li>
+                </span>Tasks</a> </li> 
         </ul>
         <ul>
-            <li><a href="login.html" class="header-links"><span class="material-symbols-outlined" style="padding-right:5px">
+            <li><a href="<?= $redirect ?>" class="header-links"><span class="material-symbols-outlined" style="padding-right:5px">
                 login
-                </span>Login</a></li>
-            <li><a href="register.html" class="header-links"><span class="material-symbols-outlined" style="padding-right:5px">
+                </span><?= $text ?></a></li>
+            <li><a href="./register.php" class="header-links"><span class="material-symbols-outlined" style="padding-right:5px">
                 how_to_reg
                 </span>Register</a></li>
+           
         </ul>
    
     </header>
@@ -44,30 +55,32 @@
 
         <div class="login-form">
             
-            <form id="form" onsubmit="validateForm()">
+            <form id="form" onsubmit="validateForm()" action="./func/regUser.php" method="POST">
             <h2 style="color:var(--zorange)"> Register</h2>          
             <p>Welcome! Create an account here.</p> <hr>
             <br>
+            <input type="hidden" name="ID">
+
             <label for="username" >First Name:</label><br>
-            <input type="username" class="log-input" id="fname" ><br>
+            <input name="name" type="text" class="log-input" id="name" ><br>
             
             <label for="username">Last Name:</label><br>
-            <input type="username" class="log-input" id="lname" ><br>
+            <input name="surname" type="text" class="log-input" id="surname" ><br>
             
             <label for="username">E-Mail:</label><br>
-            <input type="username" class="log-input" id="email" ><br>
+            <input name="email" type="email" class="log-input" id="email" ><br>
 
             <label for="username">Username:</label><br>
-            <input type="username" class="log-input" id="username" ><br>
+            <input name="username" type="text" class="log-input" id="username"><br>
             
             <label for="password">Password:</label><br> 
-            <input type="password" class="log-input" id="password" >
+            <input name="password" type="password" class="log-input" id="password" >
             
             <label for="username">Confirm Password:</label><br>
-            <input type="password" class="log-input" id="confirmpassword" ><br>
+            <input name="confpassword" type="password" class="log-input" id="confpassword" ><br>
             <br><br>
             
-            <button type="submit" class="log-submit" id="submit">Submit</button>
+            <button name="submit" type="submit" class="log-submit" id="submit">Submit</button>
 
             <br><br><br><br><br>
             <hr>
@@ -77,11 +90,11 @@
         
         </div>
          <script>
-        const fname = document.getElementById("fname");
-        const lname = document.getElementById("lname");
+        const fname = document.getElementById("name");
+        const lname = document.getElementById("surname");
         const email = document.getElementById("email");
         const password = document.getElementById("password");
-        const confirmpassword = document.getElementById("confirmpassword");
+        const confirmpassword = document.getElementById("confpassword");
 
 
         function isEmpty(str) {
@@ -93,15 +106,19 @@
                 isEmpty(email.value) ||isEmpty(password.value) ||
                 isEmpty(confirmpassword.value)){
                 alert("All fields should have values!")
+                return false
             }
             else if(password.value !== confirmpassword.value){
                 alert("Passwords should match!")
+                return false
             } 
             else if((password.value).length < 8 ){
                 alert("Password should be longer than 8 characters!")
+                return false
             }
             else if(!(email.value).match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
                 alert("Email is not valid!")
+                return false
             }
         
         }
