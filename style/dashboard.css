@@ -1,0 +1,54 @@
+aside{
+    width:25vh;
+    height:100vh;
+    background-color:#14213d;
+    padding-top:5px;
+}
+aside ul{
+    list-style-type:square;
+}
+aside ul li{ 
+    color:white;
+    margin: 0.5rem 0px;
+}
+aside ul li a {
+    text-decoration: none;
+    color:white;
+    transition:0.2s ease;
+}
+aside ul li a:hover{
+    color:var(--zorange);
+}
+.dashboard-stat-card{
+    background-color:var(--zblue);
+    color:var(--blue1);
+    padding:1rem 2.5rem;
+    border-radius:15px;
+    margin: 10px;
+    font-size:1rem;
+    font-weight:light;
+}
+.card-number{
+    color:white;
+    font-size:1.8rem;
+    font-weight:lighter;
+    padding:0px 5px;
+  
+}
+.top3-card{
+    background-color:var(--zblue);
+    color:white;
+    width:50%;
+    padding:15px 0px;
+    margin:0.5rem;
+    border-radius:15px;
+    
+}
+.top3-card table{
+    display: flex;
+    justify-content: center;
+    
+}
+.top3-card td{
+    padding:0.5rem 1rem;
+}
