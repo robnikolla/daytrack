@@ -33,7 +33,7 @@
         <h2 style="margin:auto 0"> <a href="./index.php" style="text-decoration:none;color:white" > Day<span style="color:var(--zorange)">Track</span> </a></h2> 
         
         <ul >
-            <li><a href="index.php" class="header-links"><span style="padding-right:5px" class="material-symbols-outlined">
+            <li><a href="./index.php" class="header-links"><span style="padding-right:5px" class="material-symbols-outlined">
                 home
                 </span> Home</a> </li>
             <li><a href="./dashboard/dashboard.php" class="header-links"><span class="material-symbols-outlined" style="padding-right:5px">
@@ -60,7 +60,7 @@
            <div style="background-color:var(--zblue);padding:60px;color:white;border-radius:10px">
              <h1>Manage your <span style="color:var(--zorange);font-size: larger;" f>Projects</span> </h1>
             <p style="width:50vh;color:var(--blue1)">Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit nam fuga expedita, ipsam odio dolores, culpa totam dicta a repellendus dolor aliquam quia, maxime iste nihil atque quibusdam adipisci nostrum?</p>        
-               <a href="login.html"><button class="herobtn">Login</button></a>
+               <a href="./login.php"><button class="herobtn">Login</button></a>
         </div> 
         
         </div>

@@ -89,6 +89,19 @@ class Detyra extends dbCon{
             return $e -> getMessage();
         }
     }
+    public function showAllYourDetyra(){
+        try{
+            $sql = "SELECT d.ID, d.desc, d.status ,d.deadline ,d.username ,a.username as adminuser 
+            FROM detyra d inner join admindb a on d.admin = a.ID 
+            WHERE d.username like '".$_SESSION["username"]."'";
+            $stm = $this->dbConnection->prepare($sql);
+            $stm->execute();
+            $detyrat= $stm->fetchAll();
+            return $detyrat;
+        } catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
     // Delete Method
     public function deleteDetyra(){
         try{
@@ -101,6 +114,28 @@ class Detyra extends dbCon{
         return $e->getMessage();
         }
     }
+    //Edit Method
+    public function edit($id){
+        $data = null;
+
+        $sql = "SELECT * FROM detyra WHERE ID = ?";
+        $stm = $this->dbConnection->prepare($sql);
+        $stm->execute([$id]);
+        $data = $stm->fetch(PDO::FETCH_ASSOC);
+        return $data;
+    }
+    
+    // Update Method
+    public function update(){
+        try{
+        $sql = "UPDATE detyra d SET d.desc=?, d.status=?, d.deadline=?, d.username=? WHERE d.ID=?";
+        $stm = $this->dbConnection->prepare($sql);
+        $stm->execute([$this->desc,$this->status,$this->deadline,$this->username,$this->ID]);
+        return $stm;
+        } catch(Exception $e){
+            return $e->getMessage();
+            }
+    }
 
 
     public function showUpcoming(){
@@ -110,6 +145,36 @@ class Detyra extends dbCon{
             where d.status like 'pending' 
             having datediff(d.deadline,CURRENT_DATE) > 0 
             order by datediff(d.deadline,CURRENT_DATE) asc";
+            $stm = $this->dbConnection->prepare($sql);
+            $stm->execute();
+            $detyrat= $stm->fetchAll();
+            return $detyrat;
+        } catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+    public function showYourUpcoming(){
+        try{
+            $sql = "SELECT d.ID, d.desc,d.status,d.deadline,d.username ,datediff(d.deadline,CURRENT_DATE) as overdue 
+            FROM detyra d 
+            where d.status like 'pending' and username like '".$_SESSION["username"]."'
+            having datediff(d.deadline,CURRENT_DATE) > 0 
+            order by datediff(d.deadline,CURRENT_DATE) asc";
+            $stm = $this->dbConnection->prepare($sql);
+            $stm->execute();
+            $detyrat= $stm->fetchAll();
+            return $detyrat;
+        } catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+    public function showYourOverdue(){
+        try{
+            $sql = "SELECT d.ID, d.desc,d.status,d.deadline ,d.username ,datediff(CURRENT_DATE,d.deadline) as overdue 
+            FROM detyra d 
+            where d.status like 'pending' and username like '".$_SESSION["username"]."'
+            having datediff(CURRENT_DATE,d.deadline) > 0 
+            order by datediff(CURRENT_DATE,d.deadline) asc";
             $stm = $this->dbConnection->prepare($sql);
             $stm->execute();
             $detyrat= $stm->fetchAll();
@@ -146,6 +211,19 @@ class Detyra extends dbCon{
             return $e -> getMessage();
         }
     }
+    public function showYourCompletedDetyra(){
+        try{
+            $sql = "SELECT d.ID, d.desc, d.status ,d.deadline ,d.username ,a.username as adminuser 
+            FROM detyra d inner join admindb a on d.admin = a.ID 
+                WHERE d.status like 'completed' and d.username like '".$_SESSION["username"]."'";
+            $stm = $this->dbConnection->prepare($sql);
+            $stm->execute();
+            $detyrat= $stm->fetchAll();
+            return $detyrat;
+        } catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
     public function showInProgressDetyra(){
         try{
             $sql = "SELECT d.ID, d.desc, d.status ,d.deadline ,d.username ,d.progress, a.username as adminuser FROM detyra d inner join admindb a on d.admin = a.ID where d.status like 'in progress'";
@@ -157,10 +235,38 @@ class Detyra extends dbCon{
             return $e -> getMessage();
         }
     }
+    public function showYourInProgressDetyra(){
+        try{
+            $sql = "SELECT d.ID, d.desc, d.status ,d.deadline ,d.username ,d.progress, a.username as adminuser 
+            FROM detyra d inner join admindb a on d.admin = a.ID 
+            WHERE d.status like 'in progress' and d.username like '".$_SESSION["username"]."'";
+            $stm = $this->dbConnection->prepare($sql);
+            $stm->execute();
+            $detyrat= $stm->fetchAll();
+            return $detyrat;
+        } catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
 
     public function showPendingDetyra(){
         try{
-            $sql = "SELECT d.ID, d.desc, d.status ,d.deadline ,d.username ,a.username as adminuser FROM detyra d inner join admindb a on d.admin = a.ID where d.status like 'pending'";
+            $sql = "SELECT d.ID, d.desc, d.status ,d.deadline ,d.username ,a.username as adminuser 
+            FROM detyra d inner join admindb a on d.admin = a.ID WHERE 
+            d.status like 'pending'";
+            $stm = $this->dbConnection->prepare($sql);
+            $stm->execute();
+            $detyrat= $stm->fetchAll();
+            return $detyrat;
+        } catch(Exception $e){
+            return $e -> getMessage();
+        }
+    }
+    public function showYourPendingDetyra(){
+        try{
+            $sql = "SELECT d.ID, d.desc, d.status ,d.deadline ,d.username ,a.username as adminuser 
+            FROM detyra d inner join admindb a on d.admin = a.ID 
+            where d.status like 'pending' and d.username like '".$_SESSION["username"]."'";
             $stm = $this->dbConnection->prepare($sql);
             $stm->execute();
             $detyrat= $stm->fetchAll();
@@ -172,7 +278,9 @@ class Detyra extends dbCon{
     
     public function showYourDetyra(){
         try{
-            $sql = "SELECT d.ID, d.desc, d.status ,d.deadline ,d.username ,a.username as adminuser FROM detyra d inner join admindb a on d.admin = a.ID where d.status like 'pending' and d.username like '".$_SESSION['username']."'";
+            $sql = "SELECT d.ID, d.desc, d.status ,d.deadline ,d.username ,a.username as adminuser 
+            FROM detyra d inner join admindb a on d.admin = a.ID 
+            where d.status like 'pending' and d.username like '".$_SESSION['username']."'";
             $stm = $this->dbConnection->prepare($sql);
             $stm->execute();
             $detyrat= $stm->fetchAll();
