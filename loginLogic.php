@@ -45,6 +45,7 @@
 					if($count>0){
 						$loggeduser = $query->fetch();
 						$_SESSION["type"] = "user";
+						$_SESSION["userid"] = $loggeduser["ID"];
 						$_SESSION["username"] = $loggeduser["username"];
 						$_SESSION["fullname"] = $loggeduser["name"]." ".$loggeduser["surname"];
 						header('Location:./dashboard/dashboard.php');
