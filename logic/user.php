@@ -99,6 +99,28 @@ class User extends dbCon{
         return $e->getMessage();
         }
     }
+    //Edit Method
+    public function edit($id){
+        $data = null;
+
+        $sql = "SELECT * FROM usersdb WHERE ID = ?";
+        $stm = $this->dbConnection->prepare($sql);
+        $stm->execute([$id]);
+        $data = $stm->fetch(PDO::FETCH_ASSOC);
+        return $data;
+    }
+    
+    // Update Method
+    public function update(){
+        try{
+        $sql = "UPDATE usersdb SET name=?, surname=?, email=?, username=?, password=?, confpassword=? WHERE ID=?";
+        $stm = $this->dbConnection->prepare($sql);
+        $stm->execute([$this->name,$this->surname,$this->email,$this->username,$this->password,$this->confpassword,$this->ID]);
+        return $stm;
+        } catch(Exception $e){
+            return $e->getMessage();
+            }
+    }
 
 }
 
