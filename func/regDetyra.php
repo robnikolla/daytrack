@@ -2,7 +2,7 @@
     require_once("../logic/detyra.php");
 
     if(isset($_POST['submit'])){
-        $newDetyra = new Detyra(
+                 $newDetyra = new Detyra(
                             $_POST["ID"],
                             $_POST["desc"],
                             $_POST["status"],
