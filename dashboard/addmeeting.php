@@ -7,6 +7,9 @@
     $text = "Logout";
     $redirect = "./logout.php";
   }
+  if($_SESSION["type"] == "user"){
+    header("Location:./workdash/workerdashboard.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

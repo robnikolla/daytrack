@@ -1,7 +1,7 @@
 :root{
     --zblue:#1d3557;
     --zorange:#e63946;
-    --zgray:#F1FAEE;
+    --zgray:#f8f8f8;
     --blue1: #A8DADC;
     --blue2: #457B9D;
 }
@@ -15,8 +15,8 @@ header{
     color:var(--zgray);
     display:flex;
     flex-wrap:wrap;
-    /* position:fixed;
-    width:100%; */
+  
+    min-width:100%; 
     flex-direction:row;
     justify-content: space-around;
 }

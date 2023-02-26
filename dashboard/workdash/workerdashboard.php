@@ -70,6 +70,10 @@
             <li><a href="./workerinprogress.php">In Progress </a></li>
             <li><a href="./workercompleted.php">Completed </a></li>
             <li><a href="./workerpending.php">Pending </a></li>
+            <h4 style="color:white;font-size:1.2rem;margin:0;color:var(--blue1);margin-top:20px;">Meetings</h4>
+
+        <li><a href="./workermeetings.php">All Meetings </a></li>
+       
         <h4 style="color:white;font-size:1.2rem;margin:0;color:var(--blue1);margin-top:20px;">Users</h4>
         <li><a href="<?= "../../func/updUser.php?ID=".$_SESSION["userid"] ?>">Edit your info </a></li>
 

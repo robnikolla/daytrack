@@ -84,7 +84,7 @@
         <li><a href="../register.php">Add User </a></li>
         <li><a href="./userlist.php">User List </a></li>
         <h4 style="color:white;font-size:1.2rem;margin:0;color:var(--blue1);margin-top:20px;">Admins</h4>
-        <li><a href="./adminlist">Admin List </a></li>
+        <li><a href="./adminlist.php">Admin List </a></li>
         <li><a href="<?= "../func/updAdmin.php?ID=".$_SESSION["adminid"] ?>">Edit your info </a></li>
 
         </ul>

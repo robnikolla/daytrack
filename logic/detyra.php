@@ -80,7 +80,7 @@ class Detyra extends dbCon{
     // Fetch method
     public function showAllDetyra(){
         try{
-            $sql = "SELECT d.ID, d.desc, d.status ,d.deadline ,d.username ,a.username as adminuser FROM detyra d inner join admindb a on d.admin = a.ID";
+            $sql = "SELECT d.ID, d.desc, d.status ,d.deadline ,d.username,d.progress, a.username as adminuser FROM detyra d inner join admindb a on d.admin = a.ID";
             $stm = $this->dbConnection->prepare($sql);
             $stm->execute();
             $detyrat= $stm->fetchAll();
@@ -91,7 +91,7 @@ class Detyra extends dbCon{
     }
     public function showAllYourDetyra(){
         try{
-            $sql = "SELECT d.ID, d.desc, d.status ,d.deadline ,d.username ,a.username as adminuser 
+            $sql = "SELECT d.ID, d.desc, d.status ,d.deadline,d.progress ,d.username ,a.username as adminuser 
             FROM detyra d inner join admindb a on d.admin = a.ID 
             WHERE d.username like '".$_SESSION["username"]."'";
             $stm = $this->dbConnection->prepare($sql);
@@ -128,9 +128,9 @@ class Detyra extends dbCon{
     // Update Method
     public function update(){
         try{
-        $sql = "UPDATE detyra d SET d.desc=?, d.status=?, d.deadline=?, d.username=? WHERE d.ID=?";
+        $sql = "UPDATE detyra d SET d.desc=?, d.status=?, d.deadline=?,d.progress=?, d.username=? WHERE d.ID=?";
         $stm = $this->dbConnection->prepare($sql);
-        $stm->execute([$this->desc,$this->status,$this->deadline,$this->username,$this->ID]);
+        $stm->execute([$this->desc,$this->status,$this->deadline,$this->progress,$this->username,$this->ID]);
         return $stm;
         } catch(Exception $e){
             return $e->getMessage();

@@ -26,6 +26,6 @@ if(isset($_POST['submit']))
                         $_POST['username'],
                         $_POST['password'],
                         $_POST['confpassword']);
-            $newUser->registerUser();
+            $newUser->registerUser();	
             }
 ?>
